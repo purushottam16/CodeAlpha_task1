@@ -1,0 +1,27 @@
+import os
+import requests
+from dotenv import load_dotenv
+
+load_dotenv()
+
+def google_translate(text, target_language):
+    url = "https://translation.googleapis.com/language/translate/v2"
+    params = {
+        'q': text,
+        'target': target_language,
+        'key': os.getenv('GOOGLE_API_KEY')
+    }
+    response = requests.post(url, params=params)
+    if response.status_code == 200:
+        return response.json()['data']['translations'][0]['translatedText']
+    else:
+        return f"Error: {response.status_code}"
+
+def main():
+    text = input("Enter text to translate: ")
+    target_language = input("Enter target language code: ")
+    translation = google_translate(text, target_language)
+    print(f"Translation: {translation}")
+
+if __name__ == "__main__":
+    main()
