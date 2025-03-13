@@ -1,0 +1,19 @@
+To run it:
+
+Set up the .env file with your Google API key:
+ini
+
+GOOGLE_API_KEY=your_google_api_key
+Install the required libraries with:
+
+
+pip install requests python-dotenv
+Run the script with:
+
+
+python translator.py
+
+
+
+
+
